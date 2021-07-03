@@ -22,6 +22,9 @@ env = environ.Env(
     DEBUG=(bool, False)
 )
 
+# added by me
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 # .env config
 environ.Env.read_env()
 

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Employees, Vendor
+from .models import *
 
 
 # EmployeeAdmin
@@ -10,6 +10,7 @@ class EmployeeAdmin(admin.ModelAdmin):
                     'credit_allowance', 'commission']
 
 
+# Vendor
 @admin.register(Vendor)
 class VendorAdmin(admin.ModelAdmin):
     list_display = ['id', 'vendor_id', 'name', 'address', 'city', 'state', 'zip_code', 'license_no',
@@ -17,3 +18,23 @@ class VendorAdmin(admin.ModelAdmin):
                     'credit_allowance', 'collection']
 
 
+# Vendor
+@admin.register(Inventory)
+class InventoryAdmin(admin.ModelAdmin):
+    list_display = ['id', 'product', 'type', 'type_option', 'strain', 'brand', 'weight', 'weight_type', 'packaging',
+                    'price_per_unit', 'metre_uid', 'quantity_per_case']
+
+
+# AvailableInventory
+@admin.register(AvailableInventory)
+class AvailableInventoryAdmin(admin.ModelAdmin):
+    list_display = ['id', 'product_name', 'product_description', 'quantity', 'metre_uid', 'location', 'type',
+                    'package_date', 'expiration_date', 'price_per_unit', 'batch_id', 'brand', 'strain', 'weight',
+                    'weight_type', 'packaging']
+
+
+
+# IncomingInventory
+@admin.register(IncomingInventory)
+class IncomingInventoryAdmin(admin.ModelAdmin):
+    list_display = ['id', 'product', 'quantity', 'metric_uid', 'location',]

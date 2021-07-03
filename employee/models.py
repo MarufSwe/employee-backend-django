@@ -15,6 +15,9 @@ class Employees(models.Model):
     credit_allowance = models.CharField(max_length=6, null=True, blank=True)
     commission = models.CharField(max_length=6, null=True, blank=True)
 
+    def __str__(self):
+        return self.first_name
+
 
 # Vendor Model
 class Vendor(models.Model):
@@ -43,3 +46,68 @@ class Vendor(models.Model):
     instagram = models.CharField(max_length=30, blank=True, null=True)
     credit_allowance = models.CharField(max_length=6, null=True, blank=True)
     collection = models.BooleanField(default=True, blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Inventory(models.Model):
+    class Weight_Type(models.TextChoices):
+        Ounce = 'ounce', ('Ounce')
+        Pound = 'pound', ('Pound')
+        Gram = 'gram', ('Gram')
+        Kilogram = 'kg', ('Kilogram')
+
+    product = models.CharField(max_length=50, null=False, blank=False)
+    type = models.CharField(max_length=50, null=True, blank=True)
+    type_option = models.CharField(max_length=30, null=True, blank=True)
+    strain = models.CharField(max_length=30, null=True, blank=True)
+    brand = models.CharField(max_length=30, null=True, blank=True)
+    weight = models.CharField(max_length=20, null=True, blank=True)
+    weight_type = models.CharField(max_length=20, blank=True, null=True, choices=Weight_Type.choices,
+                                   default=Weight_Type.Pound)
+    packaging = models.CharField(max_length=20, null=True, blank=True)
+    price_per_unit = models.CharField(max_length=20, null=True, blank=True)
+    metre_uid = models.CharField(max_length=30, null=True, blank=True)
+    quantity_per_case = models.CharField(max_length=30, null=True, blank=True)
+
+    def __str__(self):
+        return self.product
+
+
+class AvailableInventory(models.Model):
+    class Weight_Types(models.TextChoices):
+        Ounce = 'ounce', ('Ounce')
+        Pound = 'pound', ('Pound')
+        Gram = 'gram', ('Gram')
+        Kilogram = 'kg', ('Kilogram')
+
+    product_name = models.CharField(max_length=100, null=False, blank=False)
+    product_description = models.TextField(null=True, blank=True)
+    quantity = models.CharField(default=0, max_length=5, null=True, blank=True)
+    metre_uid = models.CharField(max_length=30, null=True, blank=True)
+    location = models.CharField(max_length=100, null=True, blank=True)
+    type = models.CharField(max_length=50, null=True, blank=True)
+    package_date = models.DateField(editable=True, blank=True, null=True)
+    expiration_date = models.DateField(editable=True, blank=True, null=True)
+    price_per_unit = models.CharField(max_length=20, null=True, blank=True)
+    batch_id = models.CharField(max_length=20, null=True, blank=True)
+    brand = models.CharField(max_length=30, null=True, blank=True)
+    strain = models.CharField(max_length=30, null=True, blank=True)
+    weight = models.CharField(max_length=20, null=True, blank=True)
+    weight_type = models.CharField(max_length=20, blank=True, null=True, choices=Weight_Types.choices,
+                                   default=Weight_Types.Pound)
+    packaging = models.CharField(max_length=20, null=True, blank=True)
+
+    def __str__(self):
+        return self.product_name
+
+
+# Employee Model
+class IncomingInventory(models.Model):
+    product = models.ForeignKey(AvailableInventory, on_delete=models.SET_NULL, null=True,
+                                related_name='availableInventory_incomingInventory')
+    quantity = models.CharField(default=0, max_length=5, null=True, blank=True)
+    metric_uid = models.CharField(max_length=30, null=True, blank=True)
+    location = models.CharField(max_length=100, null=True, blank=True)
+
