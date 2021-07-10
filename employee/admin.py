@@ -38,3 +38,13 @@ class AvailableInventoryAdmin(admin.ModelAdmin):
 @admin.register(IncomingInventory)
 class IncomingInventoryAdmin(admin.ModelAdmin):
     list_display = ['id', 'product', 'quantity', 'metric_uid', 'location',]
+
+
+# IncomingInventory
+@admin.register(Orders)
+class OrdersAdmin(admin.ModelAdmin):
+    list_display = ['id', 'employee_id', 'vendor_id', 'license_holder', 'buyer_name', 'phone', 'email', 'order',
+                    'product', 'brand', 'product_description', 'price_per_unit', 'quantity', 'excise_text', 'payment_pickup_date',
+                    'delivery_date', 'shipping_address', 'city', 'state', 'zip_code', 'available_vendor_credit',
+                    'vendor_credit_used_today', 'available_employee_credit', 'employee_credit_used_today', 'employee_discount',
+                    'sub_total', 'total_taxes', 'total', 'total_due_today']
