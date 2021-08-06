@@ -1,0 +1,46 @@
+from django.db import models
+
+
+# Vendor Model
+class AccountVendor(models.Model):
+    class State(models.TextChoices):
+        Dhaka = 'dhaka', ('Dhaka')
+        Chattogram = 'chattogram', ('Chattogram')
+        Rajshahi = 'rajshahi', ('Rajshahi')
+        Barishal = 'barishal', ('Barishal')
+        Khulna = 'khulna', ('Khulna')
+        Rangpur = 'rangpur', ('Rangpur')
+        Mymensingh = 'mymensingh', ('Mymensingh')
+        Sylhet = 'sylhet', ('Sylhet')
+
+    vendor_name = models.CharField(max_length=30, null=False, blank=False)
+    vendor_id = models.CharField(max_length=20, unique=True, blank=False, null=False)
+    address = models.TextField(blank=True, null=True)
+    city = models.CharField(max_length=20, blank=True, null=True)
+    state = models.CharField(max_length=20, blank=True, null=True, choices=State.choices, default=State.Dhaka)
+    zip_code = models.CharField(max_length=20, blank=True, null=True)
+    license_no = models.CharField(max_length=50, blank=True, null=True)
+    seller_permit = models.CharField(max_length=15, blank=True, null=True)
+    phone = models.CharField(max_length=15, blank=True, null=True)
+    email = models.EmailField(max_length=50, blank=True, null=True)
+    owner_name = models.CharField(max_length=30, blank=True, null=True)
+    point_of_contact = models.CharField(max_length=30, blank=True, null=True)
+    instagram = models.CharField(max_length=30, blank=True, null=True)
+    credit_allowance = models.CharField(max_length=6, null=True, blank=True)
+    collection = models.BooleanField(default=True, blank=True, null=True)
+    outstanding_credit = models.CharField(max_length=100, null=True, blank=True)
+    last_order = models.DateField(editable=True, blank=True, null=True)
+
+    def __str__(self):
+        return self.vendor_name
+
+
+class ScheduleEducation(models.Model):
+    acc_vendor = models.ForeignKey(AccountVendor, on_delete=models.SET_NULL, null=True, related_name='vendor_education')
+    name = models.CharField(max_length=150, unique=True, blank=False, null=False)
+    address = models.TextField(blank=True, null=True)
+    phone = models.CharField(max_length=15, blank=True, null=True)
+    email = models.EmailField(max_length=50, blank=True, null=True)
+    brand = models.CharField(max_length=100, blank=True, null=True)
+    date_time = models.DateTimeField(editable=True, blank=True, null=True)
+    no_of_hours = models.DecimalField(max_digits=5, decimal_places=2, default=00.00)

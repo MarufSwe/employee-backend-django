@@ -61,6 +61,8 @@ INSTALLED_APPS = [
     # App
     'employee',
 
+    'account_management',
+
     # djangorestframework
     'rest_framework',
 

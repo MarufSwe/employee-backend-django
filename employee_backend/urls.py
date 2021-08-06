@@ -24,5 +24,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # home
     path('', TemplateView.as_view(template_name="home.html")),
-    path('api/', include('employee.urls'))
+    path('api/', include('employee.urls')),
+    path('api/', include('account_management.urls'))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
