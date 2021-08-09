@@ -42,5 +42,46 @@ class ScheduleEducation(models.Model):
     phone = models.CharField(max_length=15, blank=True, null=True)
     email = models.EmailField(max_length=50, blank=True, null=True)
     brand = models.CharField(max_length=100, blank=True, null=True)
-    date_time = models.DateTimeField(editable=True, blank=True, null=True)
+    date_time = models.DateField(editable=True, blank=True, null=True)
     no_of_hours = models.DecimalField(max_digits=5, decimal_places=2, default=00.00)
+
+    def __str__(self):
+        return self.name
+
+
+class CreateReport(models.Model):
+    acc_vendor = models.ForeignKey(AccountVendor, on_delete=models.SET_NULL, null=True, related_name='vendor_create_report')
+    brand = models.CharField(max_length=100, blank=True, null=True)
+    product_location = models.TextField(blank=True, null=True)
+    brand_exposure = models.BooleanField(default=True, blank=True, null=True)
+    product_visibility = models.BooleanField(default=True, blank=True, null=True)
+
+    def __str__(self):
+        return self.brand
+
+
+class CreateMerchandise(models.Model):
+    product = models.CharField(max_length=100 ,blank=True, null=True)
+    brand = models.CharField(max_length=100, blank=True, null=True)
+    type = models.CharField(max_length=100, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    quantity = models.IntegerField(blank=True, null=True)
+    # image = models.ImageField(upload_to='images', verbose_name='Product Image', null=True, blank=True)
+
+    def __str__(self):
+        return self.product
+
+    # def image_img(self):
+    #     if self.image:
+    #         return u'<img src="%s" width="50" height="50" />' % self.image.url
+    #     else:
+    #         return '(Sin imagen)'
+    #
+    # image_img.short_description = 'Thumb'
+    # image_img.allow_tags = True
+
+
+
+
+
+

@@ -13,3 +13,14 @@ class VendorAdmin(admin.ModelAdmin):
 @admin.register(ScheduleEducation)
 class ScheduleEducationAdmin(admin.ModelAdmin):
     list_display = ['id', 'name', 'address', 'phone', 'email', 'brand', 'date_time', 'no_of_hours']
+
+
+@admin.register(CreateReport)
+class CreateReportAdmin(admin.ModelAdmin):
+    list_display = ['id', 'brand', 'product_location', 'brand_exposure', 'product_visibility', 'acc_vendor',]
+
+
+
+@admin.register(CreateMerchandise)
+class CreateMerchandiseAdmin(admin.ModelAdmin):
+    list_display = ['id', 'product', 'brand', 'type', 'description', 'quantity']
