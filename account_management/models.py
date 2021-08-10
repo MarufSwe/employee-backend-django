@@ -50,7 +50,8 @@ class ScheduleEducation(models.Model):
 
 
 class CreateReport(models.Model):
-    acc_vendor = models.ForeignKey(AccountVendor, on_delete=models.SET_NULL, null=True, related_name='vendor_create_report')
+    acc_vendor = models.ForeignKey(AccountVendor, on_delete=models.SET_NULL, null=True,
+                                   related_name='vendor_create_report')
     brand = models.CharField(max_length=100, blank=True, null=True)
     product_location = models.TextField(blank=True, null=True)
     brand_exposure = models.BooleanField(default=True, blank=True, null=True)
@@ -61,11 +62,12 @@ class CreateReport(models.Model):
 
 
 class CreateMerchandise(models.Model):
-    product = models.CharField(max_length=100 ,blank=True, null=True)
+    product = models.CharField(max_length=100, blank=True, null=True)
     brand = models.CharField(max_length=100, blank=True, null=True)
     type = models.CharField(max_length=100, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     quantity = models.IntegerField(blank=True, null=True)
+
     # image = models.ImageField(upload_to='images', verbose_name='Product Image', null=True, blank=True)
 
     def __str__(self):
@@ -81,7 +83,16 @@ class CreateMerchandise(models.Model):
     # image_img.allow_tags = True
 
 
+class OrderMerchandise(models.Model):
+    class DeliveryTime(models.TextChoices):
+        Morning = 'morning', ('Morning')
+        Afternoon = 'afternoon', ('Afternoon')
 
-
-
-
+    acc_vendor = models.ForeignKey(AccountVendor, on_delete=models.SET_NULL, null=True,
+                                   related_name='vendor_order_merchandise')
+    create_merchandise = models.ForeignKey(CreateMerchandise, on_delete=models.SET_NULL, null=True,
+                                           related_name='create_merchandise_order_merchandise')
+    quantity = models.IntegerField(blank=True, null=True)
+    delivery_date = models.DateField(editable=True, blank=True, null=True)
+    delivery_time = models.CharField(max_length=20, blank=True, null=True, choices=DeliveryTime.choices,
+                                     default=DeliveryTime.Morning)

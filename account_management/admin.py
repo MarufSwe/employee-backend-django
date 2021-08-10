@@ -24,3 +24,9 @@ class CreateReportAdmin(admin.ModelAdmin):
 @admin.register(CreateMerchandise)
 class CreateMerchandiseAdmin(admin.ModelAdmin):
     list_display = ['id', 'product', 'brand', 'type', 'description', 'quantity']
+
+
+
+@admin.register(OrderMerchandise)
+class OrderMerchandiseAdmin(admin.ModelAdmin):
+    list_display = ['id', 'acc_vendor', 'create_merchandise', 'quantity', 'delivery_date', 'delivery_time',]

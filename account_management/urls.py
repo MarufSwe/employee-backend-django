@@ -3,6 +3,7 @@ from account_management.views.vendor_views import AccountVendorViewSet
 from account_management.views.shcedule_education_views import ScheduleEducationViewSet
 from account_management.views.create_report_views import CreateReportViewSet
 from account_management.views.merchandise_views import MerchandiseViewSet
+from account_management.views.order_merchandise_views import OrderMerchandiseViewSet
 from rest_framework import routers
 from . import views
 
@@ -12,6 +13,7 @@ router.register('acc-vendor', AccountVendorViewSet)
 router.register('education', ScheduleEducationViewSet)
 router.register('create-report', CreateReportViewSet)
 router.register('merchandise', MerchandiseViewSet)
+router.register('order-merchandise', OrderMerchandiseViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
@@ -19,5 +21,6 @@ urlpatterns = [
     path('education/', views.shcedule_education_views.ScheduleEducationViewSet),
     path('create-report/', views.create_report_views.CreateReportViewSet),
     path('merchandise/', views.merchandise_views.MerchandiseViewSet),
+    path('order-merchandise/', views.order_merchandise_views.OrderMerandiseViewSet),
 
 ]
