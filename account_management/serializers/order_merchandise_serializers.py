@@ -22,20 +22,20 @@ class CreateMerchandiseSerializerForOrderMerchandiseList(serializers.ModelSerial
 # Schedule Education serializers
 class OrderMerchandiseListSerializer(serializers.ModelSerializer):
     acc_vendor = VendorSerializerForOrderMerchandiseList(read_only=True)
-    create_merchandise = CreateMerchandiseSerializerForOrderMerchandiseList(read_only=True)
+    cm = CreateMerchandiseSerializerForOrderMerchandiseList(read_only=True)
     class Meta:
-        model = CreateReport
-        fields = ('id', 'quantity', 'delivery_date', 'delivery_time', 'acc_vendor', 'create_merchandise')
+        model = OrderMerchandise
+        fields = ('id', 'quantity', 'delivery_date', 'delivery_time', 'acc_vendor', 'cm')
 
 
 
 # Schedule Education serializers
 class OrderMerchandiseCreateSerializer(serializers.ModelSerializer):
     acc_vendor = serializers.PrimaryKeyRelatedField(many=False, queryset=AccountVendor.objects.all())
-    create_merchandise = serializers.PrimaryKeyRelatedField(many=False, queryset=CreateMerchandise.objects.all())
+    cm = serializers.PrimaryKeyRelatedField(many=False, queryset=CreateMerchandise.objects.all())
     class Meta:
-        model = CreateReport
-        fields = ('id', 'acc_vendor', 'create_merchandise', 'quantity', 'delivery_date', 'delivery_time',)
+        model = OrderMerchandise
+        fields = ('id', 'acc_vendor', 'cm', 'quantity', 'delivery_date', 'delivery_time',)
 
 
 #

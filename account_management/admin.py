@@ -29,4 +29,5 @@ class CreateMerchandiseAdmin(admin.ModelAdmin):
 
 @admin.register(OrderMerchandise)
 class OrderMerchandiseAdmin(admin.ModelAdmin):
-    list_display = ['id', 'acc_vendor', 'create_merchandise', 'quantity', 'delivery_date', 'delivery_time',]
+    # list_display = ['id', 'acc_vendor', 'create_merchandise', 'quantity', 'delivery_date', 'delivery_time',]
+    list_display = ['id', 'quantity', 'delivery_date', 'delivery_time', 'acc_vendor', 'cm']

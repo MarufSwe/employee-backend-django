@@ -88,10 +88,14 @@ class OrderMerchandise(models.Model):
         Morning = 'morning', ('Morning')
         Afternoon = 'afternoon', ('Afternoon')
 
-    acc_vendor = models.ForeignKey(AccountVendor, on_delete=models.SET_NULL, null=True,
-                                   related_name='vendor_order_merchandise')
-    create_merchandise = models.ForeignKey(CreateMerchandise, on_delete=models.SET_NULL, null=True,
-                                           related_name='create_merchandise_order_merchandise')
+    # acc_vendor = models.ForeignKey(AccountVendor, on_delete=models.SET_NULL, null=True,
+    #                                related_name='vendor_order_merchandise')
+    # create_merchandise = models.ForeignKey(CreateMerchandise, on_delete=models.SET_NULL, null=True,
+    #                                        related_name='cmerchandise_order_merchandise')
+
+    acc_vendor = models.ForeignKey(AccountVendor, on_delete=models.SET_NULL, null=True, related_name='om_av')
+    cm = models.ForeignKey(CreateMerchandise, on_delete=models.SET_NULL, null=True, related_name='om_cm')
+
     quantity = models.IntegerField(blank=True, null=True)
     delivery_date = models.DateField(editable=True, blank=True, null=True)
     delivery_time = models.CharField(max_length=20, blank=True, null=True, choices=DeliveryTime.choices,
