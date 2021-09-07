@@ -17,8 +17,7 @@ class ScheduleEducationAdmin(admin.ModelAdmin):
 
 @admin.register(CreateReport)
 class CreateReportAdmin(admin.ModelAdmin):
-    list_display = ['id', 'brand', 'product_location', 'brand_exposure', 'product_visibility', 'acc_vendor',]
-
+    list_display = ['id', 'brand', 'product_location', 'brand_exposure', 'product_visibility', 'acc_vendor', ]
 
 
 @admin.register(CreateMerchandise)
@@ -26,8 +25,14 @@ class CreateMerchandiseAdmin(admin.ModelAdmin):
     list_display = ['id', 'product', 'brand', 'type', 'description', 'quantity']
 
 
-
 @admin.register(OrderMerchandise)
 class OrderMerchandiseAdmin(admin.ModelAdmin):
     # list_display = ['id', 'acc_vendor', 'create_merchandise', 'quantity', 'delivery_date', 'delivery_time',]
     list_display = ['id', 'quantity', 'delivery_date', 'delivery_time', 'acc_vendor', 'cm']
+
+
+@admin.register(CustomInfo)
+class CustomInfoAdmin(admin.ModelAdmin):
+    list_display = ['id', 'license', 'product_type', 'flower_type', 'grow_method', 'nutrients_used', 'trim_method',
+                    'curing_time', 'growing_location', 'brand_headquarters', 'website_url', 'instagram',
+                    'point_of_contact', 'brand_history_and_mission', 'flower_quality', 'price_point', 'notes']

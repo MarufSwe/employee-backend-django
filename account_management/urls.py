@@ -4,6 +4,7 @@ from account_management.views.shcedule_education_views import ScheduleEducationV
 from account_management.views.create_report_views import CreateReportViewSet
 from account_management.views.merchandise_views import MerchandiseViewSet
 from account_management.views.order_merchan_views import OrderMerchandiseViewSet
+from account_management.views.custome_info_views import CustomInfoViewSet
 from rest_framework import routers
 from . import views
 
@@ -14,6 +15,7 @@ router.register('education', ScheduleEducationViewSet)
 router.register('create-report', CreateReportViewSet)
 router.register('merchandise', MerchandiseViewSet)
 router.register('order-merchandise', OrderMerchandiseViewSet)
+router.register('custom-info', CustomInfoViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
@@ -22,5 +24,6 @@ urlpatterns = [
     path('create-report/', views.create_report_views.CreateReportViewSet),
     path('merchandise/', views.merchandise_views.MerchandiseViewSet),
     path('order-merchandise/', views.order_merchan_views.OrderMerchandiseViewSet),
+    path('custom-info/', views.custome_info_views.CustomInfoViewSet),
 
 ]

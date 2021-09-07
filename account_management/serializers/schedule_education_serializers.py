@@ -3,7 +3,6 @@ from account_management.models import ScheduleEducation, AccountVendor
 from django import forms
 
 
-# Designation serializers
 class AccountVendorSerializerForScheduleEducation(serializers.ModelSerializer):
     class Meta:
         model = AccountVendor

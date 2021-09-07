@@ -100,3 +100,23 @@ class OrderMerchandise(models.Model):
     delivery_date = models.DateField(editable=True, blank=True, null=True)
     delivery_time = models.CharField(max_length=20, blank=True, null=True, choices=DeliveryTime.choices,
                                      default=DeliveryTime.Morning)
+
+
+class CustomInfo(models.Model):
+    license = models.CharField(max_length=200, blank=True, null=True)
+    product_type = models.CharField(max_length=200, blank=True, null=True)
+    flower_type = models.CharField(max_length=200, blank=True, null=True)
+    grow_method = models.CharField(max_length=200, blank=True, null=True)
+    nutrients_used = models.TextField(blank=True, null=True)
+    trim_method = models.CharField(max_length=200, blank=True, null=True)
+    curing_time = models.CharField(max_length=200, blank=True, null=True)
+    growing_location = models.CharField(max_length=200, blank=True, null=True)
+    brand_headquarters = models.CharField(max_length=200, blank=True, null=True)
+    website_url = models.URLField(max_length=200, blank=True, null=True)
+    instagram = models.CharField(max_length=200, blank=True, null=True)
+    point_of_contact = models.CharField(max_length=200, blank=True, null=True)
+    brand_history_and_mission = models.CharField(max_length=200, blank=True, null=True)
+    flower_quality = models.CharField(max_length=200, blank=True, null=True)
+    price_point = models.CharField(max_length=200, blank=True, null=True)
+    notes = models.TextField(blank=True, null=True)
+
