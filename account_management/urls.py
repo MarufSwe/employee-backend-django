@@ -5,6 +5,9 @@ from account_management.views.create_report_views import CreateReportViewSet
 from account_management.views.merchandise_views import MerchandiseViewSet
 from account_management.views.order_merchan_views import OrderMerchandiseViewSet
 from account_management.views.custome_info_views import CustomInfoViewSet
+from account_management.views.register_views import RegisterAPI
+from account_management.views.login_views import LoginAPI
+from knox import views as knox_views
 from rest_framework import routers
 from . import views
 
@@ -16,6 +19,7 @@ router.register('create-report', CreateReportViewSet)
 router.register('merchandise', MerchandiseViewSet)
 router.register('order-merchandise', OrderMerchandiseViewSet)
 router.register('custom-info', CustomInfoViewSet)
+# router.register('register', RegisterAPI)
 
 urlpatterns = [
     path('', include(router.urls)),
@@ -26,4 +30,11 @@ urlpatterns = [
     path('order-merchandise/', views.order_merchan_views.OrderMerchandiseViewSet),
     path('custom-info/', views.custome_info_views.CustomInfoViewSet),
 
+    # path('register/', views.register_views.RegisterAPI),
+    path('register/', RegisterAPI.as_view()),
+
+    path('login/', LoginAPI.as_view()),
+    path('logout/', knox_views.LogoutView.as_view()),
+    path('logoutall/', knox_views.LogoutAllView.as_view()),
 ]
+

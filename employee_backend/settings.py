@@ -72,6 +72,8 @@ INSTALLED_APPS = [
     # django-filter
     'django_filters',
 
+    'knox'
+
 ]
 
 MIDDLEWARE = [
@@ -175,4 +177,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 import dj_database_url
 prod_db  =  dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(prod_db)
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        # 'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        'knox.auth.TokenAuthentication',
+    ]
+}
 
