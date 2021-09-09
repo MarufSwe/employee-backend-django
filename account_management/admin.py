@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import *
+from django.contrib.auth.models import User
 
 
 # Vendor
@@ -36,3 +37,11 @@ class CustomInfoAdmin(admin.ModelAdmin):
     list_display = ['id', 'license', 'product_type', 'flower_type', 'grow_method', 'nutrients_used', 'trim_method',
                     'curing_time', 'growing_location', 'brand_headquarters', 'website_url', 'instagram',
                     'point_of_contact', 'brand_history_and_mission', 'flower_quality', 'price_point', 'notes']
+
+
+# User
+admin.site.unregister(User)
+
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+    list_display = ['id', 'username', 'email', 'password']
