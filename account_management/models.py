@@ -31,6 +31,8 @@ class AccountVendor(models.Model):
     outstanding_credit = models.CharField(max_length=100, null=True, blank=True)
     last_order = models.DateField(editable=True, blank=True, null=True)
 
+    image = models.ImageField(upload_to='images', null=True, blank=True)
+
     def __str__(self):
         return self.vendor_name
 
@@ -119,4 +121,10 @@ class CustomInfo(models.Model):
     flower_quality = models.CharField(max_length=200, blank=True, null=True)
     price_point = models.CharField(max_length=200, blank=True, null=True)
     notes = models.TextField(blank=True, null=True)
+
+
+class MediaLibrary(models.Model):
+    image_name = models.CharField(max_length=200, blank=True, null=True)
+    image = models.ImageField(upload_to='images', null=True, blank=True)
+
 

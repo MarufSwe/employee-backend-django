@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 class VendorAdmin(admin.ModelAdmin):
     list_display = ['id', 'vendor_id', 'vendor_name', 'address', 'city', 'state', 'zip_code', 'license_no',
                     'seller_permit', 'phone', 'email', 'owner_name', 'point_of_contact', 'instagram',
-                    'credit_allowance', 'collection', 'outstanding_credit', 'last_order']
+                    'credit_allowance', 'collection', 'outstanding_credit', 'last_order', 'image']
 
 
 @admin.register(ScheduleEducation)
@@ -45,3 +45,9 @@ admin.site.unregister(User)
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
     list_display = ['id', 'username', 'email', 'password']
+
+
+
+@admin.register(MediaLibrary)
+class MediaLibraryAdmin(admin.ModelAdmin):
+    list_display = ['id', 'image_name', 'image',]

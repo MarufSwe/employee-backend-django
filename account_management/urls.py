@@ -7,6 +7,7 @@ from account_management.views.order_merchan_views import OrderMerchandiseViewSet
 from account_management.views.custome_info_views import CustomInfoViewSet
 from account_management.views.register_views import RegisterAPI
 from account_management.views.login_views import LoginAPI
+from account_management.views.media_library_views import MediaLibraryViewSet
 from knox import views as knox_views
 from rest_framework import routers
 from . import views
@@ -19,6 +20,7 @@ router.register('create-report', CreateReportViewSet)
 router.register('merchandise', MerchandiseViewSet)
 router.register('order-merchandise', OrderMerchandiseViewSet)
 router.register('custom-info', CustomInfoViewSet)
+router.register('media-library', MediaLibraryViewSet)
 # router.register('register', RegisterAPI)
 
 urlpatterns = [
@@ -29,6 +31,7 @@ urlpatterns = [
     path('merchandise/', views.merchandise_views.MerchandiseViewSet),
     path('order-merchandise/', views.order_merchan_views.OrderMerchandiseViewSet),
     path('custom-info/', views.custome_info_views.CustomInfoViewSet),
+    path('media-library/', views.media_library_views.MediaLibraryViewSet),
 
     # path('register/', views.register_views.RegisterAPI),
     path('register/', RegisterAPI.as_view()),
