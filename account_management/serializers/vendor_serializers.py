@@ -1,10 +1,12 @@
 from rest_framework import serializers
 from account_management.models import AccountVendor
+from account_management.serializers.Base64ImageField import Base64ImageField
 from django import forms
 
 
 # Designation serializers
 class AccountVendorSerializer(serializers.ModelSerializer):
+    image = Base64ImageField(max_length=None, use_url=True,)
     class Meta:
         model = AccountVendor
         fields = '__all__'
